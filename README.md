@@ -1,7 +1,10 @@
-# AI-Powered Human Resource Management System (AI-HRMS)
+# People Hub – AI-Powered Human Resource Management System
+
+**Smart Workforce Management Made Simple**
 
 ## Project Overview
-AI-HRMS is a full-stack Human Resource Management System designed to simplify and automate HR operations using Java, Spring Boot, React, and AI-based capabilities.
+
+People Hub is a full-stack, AI-powered Human Resource Management System designed to simplify and automate HR operations. It provides a centralized platform for managing employees, attendance, leave, payroll, performance, and recruitment.
 
 ## Technologies Used
 
@@ -43,13 +46,15 @@ AI-HRMS is a full-stack Human Resource Management System designed to simplify an
 - Database: MySQL / H2
 - Authentication: JWT and Spring Security
 
-## Repository Contents
+## Repository Structure
 
 - `AI-HRMS-backend.zip` – Backend source code
 - `AI-HRMS-frontend.zip` – Frontend source code
 
-## Developer
-Java Full Stack Developer
+## Project Objective
 
-## Purpose
-Developed as a portfolio project to demonstrate full-stack development, REST API integration, database management, authentication, and AI integration concepts.
+To build a centralized HR platform that improves workforce management efficiency through modern web technologies and AI-powered capabilities.
+
+## Developer
+
+Java Full Stack Developer
