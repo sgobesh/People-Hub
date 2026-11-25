@@ -1,3 +1,4 @@
+
 package com.aihrms.backend.security.jwt;
 
 import com.aihrms.backend.security.service.CustomUserDetailsService;
@@ -23,9 +24,24 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     public JwtAuthenticationFilter(
             JwtService jwtService,
             CustomUserDetailsService userDetailsService) {
-
         this.jwtService = jwtService;
         this.userDetailsService = userDetailsService;
+    }
+
+    @Override
+    protected boolean shouldNotFilter(HttpServletRequest request) {
+
+        String path = request.getServletPath();
+
+        return path.equals("/")
+                || path.equals("/index.html")
+                || path.startsWith("/assets/")
+                || path.equals("/api/health")
+                || path.startsWith("/api/auth/")
+                || path.startsWith("/v3/api-docs/")
+                || path.startsWith("/swagger-ui/")
+                || path.equals("/swagger-ui.html")
+                || path.equals("/error");
     }
 
     @Override
@@ -35,18 +51,15 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             FilterChain filterChain)
             throws ServletException, IOException {
 
-        final String authHeader = request.getHeader("Authorization");
+        String authHeader = request.getHeader("Authorization");
 
-        // No Authorization Header
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
             filterChain.doFilter(request, response);
             return;
         }
 
         try {
-
             String jwt = authHeader.substring(7);
-
             String email = jwtService.extractUsername(jwt);
 
             if (email != null &&
@@ -69,17 +82,12 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                                     .buildDetails(request)
                     );
 
-                    SecurityContextHolder
-                            .getContext()
+                    SecurityContextHolder.getContext()
                             .setAuthentication(authentication);
                 }
             }
 
         } catch (Exception ex) {
-
-            // Invalid or expired token.
-            // Allow Spring Security to handle unauthorized access.
-
             SecurityContextHolder.clearContext();
         }
 
