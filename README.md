@@ -58,3 +58,7 @@ To build a centralized HR platform that improves workforce management efficiency
 ## Developer
 
 Java Full Stack Developer
+
+## credentials
+username - admin@gmail.com
+password -- admin123
